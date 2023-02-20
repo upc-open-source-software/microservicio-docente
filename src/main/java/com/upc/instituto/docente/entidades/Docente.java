@@ -1,8 +1,11 @@
 package com.upc.instituto.docente.entidades;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "TBL_DOCENTE")
 public class Docente {
@@ -11,78 +14,29 @@ public class Docente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private Long codigo;
-
     @Column(name = "nombres")
     private String nombres;
-
-    @Column(name = "apellidos")
-    private String apellidos;
-
-    @Column(name = "tipoDocumento")
-    private String tipoDocumento;
-
-    @Column(name = "nroDocumento")
-    private String nroDocumento;
-
-    @Column(name = "fechaNacimiento")
+    @Column(name = "ape_paterno")
+    private String apePaterno;
+    @Column(name = "ape_materno")
+    private String apeMaterno;
+    @Column(name = "iddepartamento")
+    private Long iddepartamento;
+    @Column(name = "idprovincia")
+    private Long idprovincia;
+    @Column(name = "iddistrito")
+    private Long iddistrito;
+    @Column(name = "direccion")
+    private String direccion;
+    @Column(name = "celular")
+    private String celular;
+    // ================================
+    @Column(name = "fech_nacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
-
-    @Column(name = "fechaRegistro")
+    @Column(name = "fech_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
 
-    @PrePersist
-    public void prePersist() {
-        this.fechaRegistro = new Date();
-    }
-
-    public Long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getTipoDocumento() { return tipoDocumento; }
-
-    public void setTipoDocumento(String tipoDocumento) { this.tipoDocumento = tipoDocumento; }
-
-    public String getNroDocumento() { return nroDocumento; }
-
-    public void setNroDocumento(String nroDocumento) { this.nroDocumento = nroDocumento; }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
 
 }

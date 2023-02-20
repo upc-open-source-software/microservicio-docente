@@ -1,6 +1,8 @@
 package com.upc.instituto.docente.rest;
 
 import com.upc.instituto.docente.entidades.Docente;
+import com.upc.instituto.docente.entidades.DocenteRegistro;
+import com.upc.instituto.docente.entidades.IDocente;
 import com.upc.instituto.docente.negocio.IDocenteNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,9 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/docentes")
 public class DocenteRest {
 
@@ -23,12 +27,12 @@ public class DocenteRest {
     }
 
     @PostMapping
-    public Docente registrar(@RequestBody Docente docente) {
+    public Docente registrar(@RequestBody DocenteRegistro docente) {
         return this.docenteNegocio.registrar(docente);
     }
 
-    @GetMapping("/{id}")
-    public Docente buscar(@PathVariable("id") Long codigo) {
+    @GetMapping("/{codigo}")
+    public Docente buscar(@PathVariable("codigo") Long codigo) {
         try {
             return this.docenteNegocio.buscar(codigo);
         } catch (Exception e) {
@@ -36,8 +40,17 @@ public class DocenteRest {
         }
     }
 
-    @PutMapping("/{id}")
-    public Docente actualizar(@RequestBody Docente docente, @PathVariable("id") Long codigo) throws Exception {
+    @GetMapping("byCad")
+    public List<Docente> buscarByCad(@RequestParam("cad") String cad) {
+        try {
+            return this.docenteNegocio.buscarByCad(cad);
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @PutMapping("/{codigo}")
+    public Docente actualizar(@RequestBody Docente docente, @PathVariable("codigo") Long codigo) throws Exception {
         try {
             docente.setCodigo(codigo);
             return this.docenteNegocio.actualizar(docente);
@@ -46,8 +59,8 @@ public class DocenteRest {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable("id") Long codigo) throws Exception {
+    @DeleteMapping("/{codigo}")
+    public ResponseEntity<?> eliminar(@PathVariable("codigo") Long codigo) throws Exception {
         try {
             this.docenteNegocio.eliminar(codigo);
             return ResponseEntity.noContent().build();

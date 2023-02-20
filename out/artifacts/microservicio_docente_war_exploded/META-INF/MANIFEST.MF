@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: torre
+Build-Jdk: Amazon Corretto version 11.0.18
+Implementation-Title: microservicio-docente
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.upc.instituto.docente
+Main-Class: ${start-class}
+
