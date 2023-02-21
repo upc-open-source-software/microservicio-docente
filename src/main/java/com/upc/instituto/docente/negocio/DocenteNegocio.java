@@ -66,7 +66,7 @@ public class DocenteNegocio implements IDocenteNegocio {
 
     @Override
     public List<Docente> listado() {
-        return iDocenteRepositorio.findAll();
+        return iDocenteRepositorio.findAllByActivo(1);
     }
 
     @Override
@@ -76,8 +76,18 @@ public class DocenteNegocio implements IDocenteNegocio {
     }
 
     @Override
-    public void eliminar(Long codigo) throws Exception {
-        this.buscar(codigo);
-        iDocenteRepositorio.deleteById(codigo);
+    public Docente eliminar(Long codigo) {
+        Docente docente = null;
+        try {
+            docente = this.buscar(codigo);
+            if (docente != null) {
+                docente.setActivo(0);
+                iDocenteRepositorio.save(docente);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            return docente;
+        }
     }
 }

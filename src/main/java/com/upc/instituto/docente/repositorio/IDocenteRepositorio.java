@@ -10,9 +10,9 @@ import java.util.List;
 public interface IDocenteRepositorio extends JpaRepository<Docente, Long> {
 
     @Query(value = "select d from Docente as d " +
-            " where d.nombres like %:cad% or " +
-            " d.apePaterno like %:cad% or " +
-            " d.apeMaterno like %:cad% ")
+            " where  UPPER(d.nombres) like %:cad% or " +
+            " UPPER(d.apePaterno) like %:cad% or " +
+            "  UPPER(d.apeMaterno) like %:cad% and d.activo=1 ")
     List<Docente> getBydCad(@Param("cad") String cadena);
 
 
@@ -20,4 +20,5 @@ public interface IDocenteRepositorio extends JpaRepository<Docente, Long> {
             " where d.codigo =:codigo   ")
     Docente findBydCodigo(@Param("codigo") Long cadena);
 
+    List<Docente> findAllByActivo(int activo);
 }

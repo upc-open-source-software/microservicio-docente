@@ -30,7 +30,7 @@ public class UsuarioRest {
     public Usuario buscarByUserAndPwd(@RequestBody Usuario user) {
         return this.negocio.validarUsuario(user);
     }
-    @PostMapping("findbyiddocente")
+    @PostMapping("findbydocente")
     public Usuario findByDocente(@RequestBody Usuario user) {
         return this.negocio.findUsuarioByIddocente(user);
     }

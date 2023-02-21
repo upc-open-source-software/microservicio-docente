@@ -40,10 +40,10 @@ public class DocenteRest {
         }
     }
 
-    @GetMapping("byCad")
+    @GetMapping("/byCad")
     public List<Docente> buscarByCad(@RequestParam("cad") String cad) {
         try {
-            return this.docenteNegocio.buscarByCad(cad);
+            return this.docenteNegocio.buscarByCad(cad.toUpperCase());
         } catch (Exception e) {
             return new ArrayList<>();
         }
@@ -59,13 +59,8 @@ public class DocenteRest {
         }
     }
 
-    @DeleteMapping("/{codigo}")
-    public ResponseEntity<?> eliminar(@PathVariable("codigo") Long codigo) throws Exception {
-        try {
-            this.docenteNegocio.eliminar(codigo);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Docente no existe en la base de datos", e);
-        }
+    @GetMapping("/disable/{codigo}")
+    public Docente eliminar(@PathVariable("codigo") Long codigo) {
+        return this.docenteNegocio.eliminar(codigo);
     }
 }

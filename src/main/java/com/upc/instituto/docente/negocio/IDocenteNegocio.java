@@ -17,5 +17,5 @@ public interface IDocenteNegocio {
 
     public Docente actualizar(Docente docente) throws Exception;
 
-    public void eliminar(Long codigo) throws Exception;
+    public Docente eliminar(Long codigo)  ;
 }

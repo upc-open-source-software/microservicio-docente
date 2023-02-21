@@ -32,6 +32,8 @@ public class Docente {
     private String celular;
     @Column(name = "correo")
     private String correo;
+    @Column(name = "activo")
+    private int activo;
     // ================================
     @Column(name = "fech_nacimiento")
     @Temporal(TemporalType.DATE)
