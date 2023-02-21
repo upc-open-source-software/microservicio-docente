@@ -36,8 +36,10 @@ public class DocenteNegocio implements IDocenteNegocio {
         obj.setIdDistrito(docente.getIdDistrito());
         obj.setDireccion(docente.getDireccion());
         obj.setCelular(docente.getCelular());
+        obj.setCorreo(docente.getCorreo());
         obj.setFechaNacimiento(docente.getFechaNacimiento());
         obj.setFechaRegistro(docente.getFechaRegistro());
+        obj.setActivo(1);
 
         obj = iDocenteRepositorio.save(obj);
 
@@ -72,6 +74,7 @@ public class DocenteNegocio implements IDocenteNegocio {
     @Override
     public Docente actualizar(Docente Docente) throws Exception {
         this.buscar(Docente.getCodigo());
+        Docente.setActivo(1);
         return iDocenteRepositorio.save(Docente);
     }
 
