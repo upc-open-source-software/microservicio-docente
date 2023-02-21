@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/usuario")
+@RequestMapping("/api/usuarios")
 public class UsuarioRest {
 
     @Autowired
@@ -29,6 +29,10 @@ public class UsuarioRest {
     @PostMapping("validate")
     public Usuario buscarByUserAndPwd(@RequestBody Usuario user) {
         return this.negocio.validarUsuario(user);
+    }
+    @PostMapping("findbyiddocente")
+    public Usuario findByDocente(@RequestBody Usuario user) {
+        return this.negocio.findUsuarioByIddocente(user);
     }
 
 

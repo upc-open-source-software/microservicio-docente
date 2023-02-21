@@ -26,8 +26,8 @@ public class UsuarioNegocio implements IUsuarioNegocio {
     }
 
     @Override
-    public Usuario actualizar(Usuario docente) {
-        return null;
+    public Usuario findUsuarioByIddocente(Usuario docente) {
+        return iUsuarioRepositorio.findUsuarioByIddocente(docente.getIddocente());
     }
 
 }

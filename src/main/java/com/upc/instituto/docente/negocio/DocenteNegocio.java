@@ -23,40 +23,40 @@ public class DocenteNegocio implements IDocenteNegocio {
     @Override
     public Docente registrar(DocenteRegistro docente) {
 
-        Usuario usuario = new Usuario();
-        usuario.setUsuario(docente.getUsuario());
-        usuario.setClave(docente.getClave());
-        iUsuarioRepositorio.save(usuario);
-
-
         Docente obj = new Docente();
-        ///obj.setCodigo(docente.getCodigo());
+
+        if (docente.getCodigo() != 0) {
+            obj.setCodigo(docente.getCodigo());
+        }
         obj.setNombres(docente.getNombres());
         obj.setApePaterno(docente.getApePaterno());
         obj.setApeMaterno(docente.getApeMaterno());
-        obj.setIddepartamento(docente.getIddepartamento());
-        obj.setIdprovincia(docente.getIdprovincia());
-        obj.setIddistrito(docente.getIddistrito());
+        obj.setIdDepartamento(docente.getIdDepartamento());
+        obj.setIdProvincia(docente.getIdProvincia());
+        obj.setIdDistrito(docente.getIdDistrito());
         obj.setDireccion(docente.getDireccion());
         obj.setCelular(docente.getCelular());
-        obj.setFechaNacimiento(null);
+        obj.setFechaNacimiento(docente.getFechaNacimiento());
         obj.setFechaRegistro(docente.getFechaRegistro());
 
-        return iDocenteRepositorio.save(obj);
+        obj = iDocenteRepositorio.save(obj);
+
+        Usuario usuario = iUsuarioRepositorio.findUsuarioByIddocente(docente.getCodigo());
+        if (usuario == null) {
+            usuario = new Usuario();
+        }
+        usuario.setIddocente(docente.getCodigo());
+        usuario.setUsuario(docente.getUsuario());
+        usuario.setClave(docente.getClave());
+
+        iUsuarioRepositorio.save(usuario);
+
+        return obj;
     }
 
     @Override
     public Docente buscar(Long codigo) throws Exception {
-
-        Usuario usuario = iUsuarioRepositorio.findUsuarioByIddocente(codigo);
-
-        Docente docente = iDocenteRepositorio.findBydCodigo(codigo);
-        if (usuario != null && docente != null) {
-
-            //docente.setUsuario(usuario.getUsuario());
-            return docente;
-        }
-        return null;
+        return iDocenteRepositorio.findBydCodigo(codigo);
     }
 
     @Override

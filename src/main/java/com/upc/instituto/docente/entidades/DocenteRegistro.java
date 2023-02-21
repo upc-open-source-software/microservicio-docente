@@ -12,16 +12,17 @@ public class DocenteRegistro {
     private String nombres;
     private String apePaterno;
     private String apeMaterno;
-    private Long iddepartamento;
-    private Long idprovincia;
-    private Long iddistrito;
+    private Long idDepartamento;
+    private Long idProvincia;
+    private Long idDistrito;
     private String direccion;
     private String celular;
+    private String correo;
 
     private String usuario;
     private String clave;
     // ================================
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     private Date fechaRegistro;
 
 

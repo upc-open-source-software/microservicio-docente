@@ -19,4 +19,5 @@ public interface IDocenteRepositorio extends JpaRepository<Docente, Long> {
     @Query(value = "select d from Docente as d " +
             " where d.codigo =:codigo   ")
     Docente findBydCodigo(@Param("codigo") Long cadena);
+
 }

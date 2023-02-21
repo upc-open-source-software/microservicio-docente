@@ -21,15 +21,17 @@ public class Docente {
     @Column(name = "ape_materno")
     private String apeMaterno;
     @Column(name = "iddepartamento")
-    private Long iddepartamento;
+    private Long idDepartamento;
     @Column(name = "idprovincia")
-    private Long idprovincia;
+    private Long idProvincia;
     @Column(name = "iddistrito")
-    private Long iddistrito;
+    private Long idDistrito;
     @Column(name = "direccion")
     private String direccion;
     @Column(name = "celular")
     private String celular;
+    @Column(name = "correo")
+    private String correo;
     // ================================
     @Column(name = "fech_nacimiento")
     @Temporal(TemporalType.DATE)

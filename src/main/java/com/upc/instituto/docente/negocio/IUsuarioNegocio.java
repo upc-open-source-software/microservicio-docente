@@ -10,7 +10,6 @@ public interface IUsuarioNegocio {
     public Usuario registrar(Usuario docente);
 
     public Usuario validarUsuario(Usuario codigo);
-
-    public Usuario actualizar(Usuario docente);
+    public Usuario findUsuarioByIddocente(Usuario codigoDocente);
 
 }
