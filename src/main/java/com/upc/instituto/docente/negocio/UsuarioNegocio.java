@@ -22,7 +22,8 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 
     @Override
     public Usuario validarUsuario(Usuario user) {
-        return iUsuarioRepositorio.findUsuarioByUsuarioAndClave(user.getUsuario(), user.getClave());
+        Usuario u = iUsuarioRepositorio.findUsuarioByUsuarioAndClave(user.getUsuario(), user.getClave());
+        return u;
     }
 
     @Override

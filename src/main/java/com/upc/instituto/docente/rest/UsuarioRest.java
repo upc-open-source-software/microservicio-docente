@@ -26,11 +26,11 @@ public class UsuarioRest {
         return this.negocio.registrar(user);
     }
 
-    @PostMapping("validate")
+    @PostMapping("/validate")
     public Usuario buscarByUserAndPwd(@RequestBody Usuario user) {
         return this.negocio.validarUsuario(user);
     }
-    @PostMapping("findbydocente")
+    @PostMapping("/findbydocente")
     public Usuario findByDocente(@RequestBody Usuario user) {
         return this.negocio.findUsuarioByIddocente(user);
     }
